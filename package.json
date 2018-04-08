@@ -1,0 +1,53 @@
+{
+  "name": "express-gmaps",
+  "version": "1.0.0",
+  "description": "Topics:  * APIs  * API Documentation  * Rate Limits  * Multiple requests",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server --exec babel-node",
+    "test": "mocha \"server/**/*.js\" --watch --compilers js:babel-core/register --require babel-polyfill"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-ramda": "^1.5.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "git+https://github.com/chaijs/chai-http.git#3ea4524",
+    "mocha": "^5.0.5",
+    "nodemon": "^1.17.3"
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "plugins": [
+          "ramda"
+        ]
+      },
+      "production": {
+        "plugins": [
+          "ramda"
+        ]
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pxr13/node-express-gmaps.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/pxr13/node-express-gmaps/issues"
+  },
+  "homepage": "https://github.com/pxr13/node-express-gmaps#readme"
+}
