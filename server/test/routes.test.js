@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 import * as code from '../utils/statusCodes';
-import { errorUnlessOK } from '../handlers/sendPlaceDetails';
+import { travelModes, append, appendToURL } from '../data';
 
 const chaiHttp = require('chai-http');
 const server = require('../');
@@ -41,9 +41,31 @@ describe('API ROUTES', () => {
       const res = await chai.request(server).get(route);
 
       expect(res).to.have.status(code.STATUS_OK);
-      expect(res).to.be.a('object');
       expect(res.body[1]).to.be.a('object');
       expect(res.body[1]).to.include(sampleExpectedRes);
+    });
+  });
+
+  describe('GET /api/travel/mode', () => {
+    it('should return the shortest travel distance', async () => {
+      const route = '/api/travel/mode';
+      const res = await chai.request(server).get(route);
+
+      expect(res).to.have.status(code.STATUS_OK);
+      expect(res.body).to.be.a('array');
+      expect(res.body[0]).to.have.property('driving');
+    });
+  });
+});
+
+describe('HELPERS', () => {
+  describe('appendToURL', () => {
+    it("should build the distance url's correctly", () => {
+      const result = appendToURL(append, travelModes);
+
+      expect(result).to.be.a('array');
+      expect(result).to.have.length(8);
+      expect(result[0]).to.be.a('string');
     });
   });
 });
