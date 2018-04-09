@@ -7,7 +7,7 @@ import { placesSearchURL } from '../data';
 const errorUnlessOK = curry((res, { data: { results, status } }) => {
   if (status !== 'OK') {
     res.status(codes.STATUS_BAD_REQUEST);
-    res.json({ error: 'Invalid search query' });
+    res.send({ error: 'Invalid search query' });
     return;
   }
   res.send(results);

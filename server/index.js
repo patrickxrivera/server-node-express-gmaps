@@ -1,11 +1,14 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import axios from 'axios';
+import dotenv from 'dotenv';
 import { pipeP, curry } from 'ramda';
 
-import key from './config';
 import sendPlaceDetails from './handlers/sendPlaceDetails';
 import sendAllPlaces from './handlers/sendAllPlaces';
+
+// init config variables
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
