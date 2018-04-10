@@ -2,7 +2,7 @@ import { forEach } from 'ramda';
 
 import { PLACES_KEY, DISTANCE_KEY } from '../config';
 
-export const placesSearchURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+shops+in+san+francsico&key=${PLACES_KEY}`;
+export const placesSearchURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${PLACES_KEY}&query=`;
 
 export const placeDetailsURL =
   'https://maps.googleapis.com/maps/api/place/details/json?placeid=';

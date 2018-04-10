@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { pipeP, curry } from 'ramda';
 import * as codes from '../utils/statusCodes';
 
+import getPlaces from './getPlaces';
 import { placesSearchURL } from '../data';
 
 const errorUnlessOK = curry((res, { data: { results, status } }) => {
@@ -13,8 +13,7 @@ const errorUnlessOK = curry((res, { data: { results, status } }) => {
   res.send(results);
 });
 
-const getPlaces = () => axios.get(placesSearchURL);
-
-const sendAllPlaces = (req, res) => pipeP(getPlaces, errorUnlessOK(res))(req);
+const sendAllPlaces = ({ query }, res) =>
+  pipeP(getPlaces, errorUnlessOK(res))(query);
 
 export default sendAllPlaces;

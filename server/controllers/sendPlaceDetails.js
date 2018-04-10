@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { pipeP, curry } from 'ramda';
+import { pipe, split, join, pipeP, curry } from 'ramda';
 import * as codes from '../utils/statusCodes';
 
+import getPlaces from './getPlaces';
 import { PLACES_KEY } from '../config';
 import { placesSearchURL, placeDetailsURL } from '../data';
 
@@ -14,14 +15,12 @@ const errorUnlessOK = curry((res, { data: { result, status } }) => {
   res.send(result);
 });
 
-const getPlace = placeID =>
+const getPlace = (placeID) =>
   axios.get(`${placeDetailsURL}${placeID}&key=${PLACES_KEY}`);
 
-const getPlaceID = places => places.data.results[0].place_id;
+const getPlaceID = (places) => places.data.results[0].place_id;
 
-const getPlaces = () => axios.get(placesSearchURL);
-
-const sendPlaceDetails = (req, res) =>
-  pipeP(getPlaces, getPlaceID, getPlace, errorUnlessOK(res))(req);
+const sendPlaceDetails = ({ query }, res) =>
+  pipeP(getPlaces, getPlaceID, getPlace, errorUnlessOK(res))(query);
 
 export default sendPlaceDetails;

@@ -1,16 +1,18 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import axios from 'axios';
+import cors from 'cors';
 import { sort, map, pipeP, curry } from 'ramda';
 
-import sendPlaceDetails from './handlers/sendPlaceDetails';
-import sendAllPlaces from './handlers/sendAllPlaces';
-import { resolve, formatData } from './handlers/getTravelModes';
+import sendPlaceDetails from './controllers/sendPlaceDetails';
+import sendAllPlaces from './controllers/sendAllPlaces';
+import { resolve, formatData } from './controllers/getTravelModes';
 import distanceURL, { travelModes } from './data';
 
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
